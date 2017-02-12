@@ -1,0 +1,27 @@
+
+Time taken to build model: 1.35 seconds
+Time taken to test model on training data: 0.09 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances       14123               78.4611 %
+Incorrectly Classified Instances      3877               21.5389 %
+Kappa statistic                          0.5692
+Mean absolute error                      0.3145
+Root mean squared error                  0.3965
+Relative absolute error                 62.8906 %
+Root relative squared error             79.3036 %
+Total Number of Instances            18000     
+
+
+=== Error on test data ===
+
+Correctly Classified Instances         200               55.7103 %
+Incorrectly Classified Instances       159               44.2897 %
+Kappa statistic                          0.1126
+Mean absolute error                      0.469 
+Root mean squared error                  0.5694
+Relative absolute error                 93.794  %
+Root relative squared error            113.8844 %
+Total Number of Instances              359     
+
