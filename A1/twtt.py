@@ -30,7 +30,7 @@ import wordlist
 tagger = NLPlib.NLPlib()
 parser = HTMLParser.HTMLParser()
 
-def demarcate_twt(input, polarity):
+def twtt9(input, polarity):
     '''
 
     :param input:
@@ -42,7 +42,7 @@ def demarcate_twt(input, polarity):
     return "<A={}>\n".format(polarity) + input
 
 
-def tag_tokens(input):
+def twtt8(input):
     '''
     Tags the tokens with their PoS, task 7.
     :param input: 1D list of tokens in order
@@ -61,7 +61,7 @@ def tag_tokens(input):
     return "\n".join(sentences)
 
 
-def separate_tokens(input):
+def twtt7(input):
     '''
     Separate each token by a space.
     :param input:
@@ -126,7 +126,7 @@ def insert_newline(index, input):
     return new
 
 
-def twt_to_sentences(input):
+def twtt5(input):
     '''
     Insert newlines between perceived sentences.
     :param input:
@@ -190,7 +190,7 @@ def twt_to_sentences(input):
     return input
 
 
-def remove_at_hash(input):
+def twtt4(input):
     '''
     Removes the @ and # characters which precede usernames
     and hashtags in tweets.
@@ -222,7 +222,7 @@ def remove_at_hash(input):
 
     return input
 
-def remove_urls(input):
+def twtt3(input):
     '''
     Removes URLs.
     :param input:
@@ -242,7 +242,7 @@ def remove_urls(input):
 
 
 
-def html_to_ascii(input):
+def twtt2(input):
     '''
     Converts HTML character codes to their ASCII equivalents.
     :param input:
@@ -259,7 +259,7 @@ def html_to_ascii(input):
     return parser.unescape(dec)
 
 
-def remove_html(input):
+def twtt1(input):
     '''
     Strips html tags, attributes, chars
     :param input: tweets in a flat list
@@ -289,15 +289,14 @@ def preprocess(raw, polarities):
 
     res = []
     for i, twt in enumerate(raw):
-        print(twt)
-        no_html = remove_html(twt.strip())
-        ascii = html_to_ascii(no_html)
-        no_url = remove_urls(ascii)
-        no_mentions = remove_at_hash(no_url)
-        sent = twt_to_sentences(no_mentions)
-        tokens = separate_tokens(sent)
-        tagged = tag_tokens(tokens)
-        demarcate = demarcate_twt(tagged, polarities[i])
+        no_html = twtt1(twt.strip())
+        ascii = twtt2(no_html)
+        no_url = twtt3(ascii)
+        no_mentions = twtt4(no_url)
+        sent = twtt5(no_mentions)
+        tokens = twtt7(sent)
+        tagged = twtt8(tokens)
+        demarcate = twtt9(tagged, polarities[i])
         res.append(demarcate)
 
     return "\n".join(res)
@@ -330,6 +329,23 @@ if __name__ == "__main__":
     #         raw_tweets.append(line[0])
     # fh.close()
 
+    # raw_tweets = []
+    # pols = []
+    #
+    # fh = open('testdata.manualSUBSET.2009.06.14.csv', 'rb')
+    # reader = csv.reader(fh)
+    # for line in reader:
+    #     raw_tweets.append(line[5])
+    #     pols.append(line[0])
+    # fh.close()
+    #
+    # f1 = open('pols_test.pkl', 'wb')
+    # f2 = open('twts_test.pkl', 'wb')
+    # pickle.dump(raw_tweets, f2)
+    # pickle.dump(pols, f1)
+    # f1.close()
+    # f2.close()
+
     # f = open('pols.pkl', 'wb')
     # pickle.dump(raw_tweets, f)
     f = open('twts.pkl', 'rb')
@@ -341,7 +357,7 @@ if __name__ == "__main__":
 
     result = preprocess(raw_tweets, polarities)
 
-    filename = "twts.txt"
+    filename = "train.twt"
     if os.path.exists(filename):
         os.remove(filename)
 

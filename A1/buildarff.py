@@ -430,8 +430,8 @@ if __name__ == "__main__":
 
     # file_in = sys.argv[0]
     # file_out = sys.argv[1]
-    file_in = "twts.txt"
-    file_out = "train.arff"
+    file_in = "test.twt"
+    file_out = "test.arff"
     max_ = 10000
 
     fh = open(file_in, 'r')
